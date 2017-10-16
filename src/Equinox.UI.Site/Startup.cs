@@ -69,6 +69,11 @@ namespace Equinox.UI.Site
             {
                 options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
                 options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+                options.AddPolicy("CanWriteProductData", policy => policy.Requirements.Add(new ClaimRequirement("Products", "Write")));
+                options.AddPolicy("CanRemoveProductData", policy => policy.Requirements.Add(new ClaimRequirement("Products", "Remove")));
+
+
+
             });
 
             // Adding MediatR for Domain Events and Notifications

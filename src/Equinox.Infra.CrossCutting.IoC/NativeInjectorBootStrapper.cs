@@ -42,6 +42,8 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddSingleton(Mapper.Configuration);
             services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
             services.AddScoped<ICustomerAppService, CustomerAppService>();
+            services.AddScoped<IProductAppService, ProductAppService>();
+
 
             // Domain - Events
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
@@ -49,13 +51,22 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<INotificationHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
             services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
 
+            services.AddScoped<INotificationHandler<ProductRegisteredEvent>, ProductEventHandler>();
+            services.AddScoped<INotificationHandler<ProductUpdatedEvent>, ProductEventHandler>();
+            services.AddScoped<INotificationHandler<ProductRemovedEvent>, ProductEventHandler>();
+
             // Domain - Commands
             services.AddScoped<INotificationHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
             services.AddScoped<INotificationHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
             services.AddScoped<INotificationHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
 
+            services.AddScoped<INotificationHandler<RegisterNewProductCommand>, ProductCommandHandler>();
+            services.AddScoped<INotificationHandler<UpdateProductCommand>, ProductCommandHandler>();
+            services.AddScoped<INotificationHandler<RemoveProductCommand>, ProductCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<EquinoxContext>();
 

@@ -12,6 +12,12 @@ namespace Equinox.Application.AutoMapper
                 .ConstructUsing(c => new RegisterNewCustomerCommand(c.Name, c.Email, c.BirthDate));
             CreateMap<CustomerViewModel, UpdateCustomerCommand>()
                 .ConstructUsing(c => new UpdateCustomerCommand(c.Id, c.Name, c.Email, c.BirthDate));
+
+
+            CreateMap<ProductViewModel, RegisterNewProductCommand>()
+                .ConstructUsing(c => new RegisterNewProductCommand(c.Name, c.Code, c.Category));
+            CreateMap<ProductViewModel, UpdateProductCommand>()
+                .ConstructUsing(c => new UpdateProductCommand(c.Id, c.Name, c.Code, c.Category));
         }
     }
 }
